@@ -25,7 +25,7 @@ dbs_on_demand <- function(){
   loadDigest()
   selection <- getState()$val
   if(selection == "Yes"){
-    course <- "R: Basic Building Blocks"
+    course <- "r_basic_building_blocks"
     email <- readline("What is your email address? ")
     student_number <- readline("What is your student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
@@ -36,9 +36,9 @@ dbs_on_demand <- function(){
       "student_number": "%s",  
       "hash": "%s",  
     }', course, email, student_number, hash)
-    url <- 'http:///results.dbsdataprojects.com/course_results/submit'
+    url <- paste('http:///results.dbsdataprojects.com/course_results/submit?course=', course, '&hash=', hash, '&email=', email, '&student_number=', student_number, sep='')
   
-    respone <- httr::POST(url, body = payload)
+    respone <- httr::GET(url)
     if(respone$status_code >= 200 && respone$status_code < 300){
       message("Grade submission succeeded!")
     } else {

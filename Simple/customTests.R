@@ -25,7 +25,7 @@ dbs_on_demand <- function(){
   loadDigest()
   selection <- getState()$val
   if(selection == "Yes"){
-    course <- "r_basic_building_blocks"
+    course <- "r_simple"
     email <- readline("What is your email address? ")
     student_number <- readline("What is your student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
@@ -42,7 +42,6 @@ dbs_on_demand <- function(){
     if(respone$status_code >= 200 && respone$status_code < 300){
       message("Grade submission succeeded!")
     } else {
-      message(url)
       message("Grade submission failed.")
       message("Press ESC if you want to exit this lesson and you")
       message("want to try to submit your grade at a later time.")
