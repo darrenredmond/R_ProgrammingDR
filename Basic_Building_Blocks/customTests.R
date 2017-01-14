@@ -16,16 +16,19 @@ getExpr <- function(){
   getState()$expr
 }
 
-library(digest)
+loadDigest <- function(){
+  if (!require("digest")) install.packages("digest")
+  library(digest)
+}
 
 dbs_on_demand <- function(){
+  loadDigest()
   selection <- getState()$val
   if(selection == "Yes"){
     course <- "R: Basic Building Blocks"
     email <- readline("What is your email address? ")
     student_number <- readline("What is your student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
-    digest("foo", "md5", serialize = FALSE)
     
     payload <- sprintf('{  
       "course": "%s",
