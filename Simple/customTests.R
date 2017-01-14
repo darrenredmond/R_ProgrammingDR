@@ -36,9 +36,9 @@ dbs_on_demand <- function(){
       "student_number": "%s",  
       "hash": "%s",  
     }', course, email, student_number, hash)
-    url <- 'http:///results.dbsdataprojects.com/course_results/submit'
+    url <- paste('http:///results.dbsdataprojects.com/course_results/submit?course=', course, '&hash=', hash, '&email=', email, '&student_number=', student_number, sep='')
   
-    respone <- httr::POST(url, body = payload)
+    respone <- httr::GET(url)
     if(respone$status_code >= 200 && respone$status_code < 300){
       message("Grade submission succeeded!")
     } else {
