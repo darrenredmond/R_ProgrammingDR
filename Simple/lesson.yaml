@@ -1,0 +1,18 @@
+- Class: meta
+  Course: R Programming
+  Lesson: Simple 
+  Author: Darren 
+  Type: Standard
+  Organization: Dublin Business School 
+  Version: 2.2.0
+
+- Class: text
+  Output: In this lesson, we will explore some basic building blocks of the R programming
+    language.
+
+- Class: mult_question
+  Output: "Would you like to receive credit for completing this course on dbsdataprojects.com?"
+  CorrectAnswer: NULL
+  AnswerChoices: Yes;No
+  AnswerTests: dbs_on_demand()
+  Hint: ""
