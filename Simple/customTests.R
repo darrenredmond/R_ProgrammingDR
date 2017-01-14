@@ -28,7 +28,7 @@ dbs_on_demand <- function(){
     course <- "R: Basic Building Blocks"
     email <- readline("What is your email address? ")
     student_number <- readline("What is your student number? ")
-    hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
+    hash <- "XXXYYY123456"#digest(paste(course, student_number), "md5", serialize = FALSE)
     
     payload <- sprintf('{  
       "course": "%s",
@@ -42,6 +42,7 @@ dbs_on_demand <- function(){
     if(respone$status_code >= 200 && respone$status_code < 300){
       message("Grade submission succeeded!")
     } else {
+      message(response)
       message("Grade submission failed.")
       message("Press ESC if you want to exit this lesson and you")
       message("want to try to submit your grade at a later time.")
