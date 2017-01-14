@@ -1,3 +1,5 @@
+# AUTO_DETECT_NEWVAR <- FALSE
+
 # Get the swirl state
 getState <- function(){
   # Whenever swirl is running, its callback is at the top of its call stack.
