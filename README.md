@@ -14,11 +14,11 @@ Your grade for your course in Dublin Business School will automatically reflect 
 
 To install open up R Studio and run the following 4 lines of code and following the instructions in the R Console ->
 
-'''r
+```r
 if (!require("swirl")) install.packages("swirl")
 library(swirl)
 
 install_course_github('darrenredmond', 'R_ProgrammingDR')
 
 swirl()
-'''
+```
