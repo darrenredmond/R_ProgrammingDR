@@ -7,8 +7,8 @@
   Version: 1.0.0
 
 - Class: text
-  Output: In this lesson we will simply ensure that you can connect to the DBS Data Projects results services and
-  validate that you can submit. Please answer Yes to the next question.
+  Output: In this lesson we will simply ensure that you can connect to the DBS Data Projects results
+    services and validate that you can submit. Please answer Yes to the next question.
 
 - Class: mult_question
   Output: "Would you like to receive credit for completing this course on dbsdataprojects.com?"
