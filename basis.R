@@ -21,6 +21,14 @@ loadDigest <- function() {
   library(digest)
 }
 
+loadGoogle <- function() {
+  if (!require("googleformr")) install.packages("googleformr")
+  library(googleformr)
+  if (!require("pacman")) install.packages("pacman")
+  library(pacman)
+  pacman::p_load_current_gh("data-steve/googleformr")
+}
+
 loadFailMessage <- function() {
   message("Grade submission failed.")
   message("Press ESC if you want to exit this lesson and you")
@@ -35,20 +43,15 @@ submit_dbs_on_demand <- function(course) {
   selection <- getState()$val
   if (selection == "Yes") {
     loadDigest()
+    loadGoogle()
     email <- readline("What is your email address? ")
     student_number <- readline("What is your student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
-    
-    payload <- sprintf('{  
-      "course": "%s",
-      "email": "%s",  
-      "student_number": "%s",  
-      "hash": "%s",  
-    }', course, email, student_number, hash)
-    url <- paste('http:///results.dbsdataprojects.com/course_results/submit?course=', course, '&hash=', hash, '&email=', email, '&student_number=', student_number, sep='')
-  
-    respone <- httr::GET(url)
-    if (respone$status_code >= 200 && respone$status_code < 300) {
+    form_id <- '1WDH2A0YpI7ghnetd4f_H9cdpGo9frH4X5KOfXo850tw'
+
+    post_answers <- googleformr::gformr(form_id)
+    post_this <- c(email, student_number, hash, course)
+    if (httr::status_code(post_answers(post_content=post_this)) < 400) {
       loadPassMessage()
     } else {
       loadFailMessage()
