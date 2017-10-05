@@ -51,7 +51,9 @@ submit_dbs_on_demand <- function(course) {
 
     post_answers <- googleformr::gformr(form_id)
     post_this <- c(email, student_number, hash, course)
-    if (httr::status_code(post_answers(post_content=post_this)) < 400) {
+    post_answers(post_content=post_this)
+
+    if (T) {
       loadPassMessage()
     } else {
       loadFailMessage()
