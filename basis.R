@@ -24,9 +24,6 @@ loadDigest <- function() {
 loadGoogle <- function() {
   if (!require("googleformr")) install.packages("googleformr")
   library(googleformr)
-  if (!require("pacman")) install.packages("pacman")
-  library(pacman)
-  pacman::p_load_current_gh("data-steve/googleformr")
 }
 
 loadFailMessage <- function() {
@@ -53,12 +50,7 @@ submit_dbs_on_demand <- function(course) {
     post_this <- c(email, student_number, hash, course)
     post_answers(post_content=post_this)
 
-    if (T) {
-      loadPassMessage()
-    } else {
-      loadFailMessage()
-      return(FALSE)
-    }
+    loadPassMessage()
   }
   TRUE
 }
