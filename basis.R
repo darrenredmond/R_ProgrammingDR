@@ -41,8 +41,8 @@ submit_dbs_on_demand <- function(course) {
   if (selection == "Yes") {
     loadDigest()
     loadGoogle()
-    email <- readline("What is your email address? ")
-    student_number <- readline("What is your student number? ")
+    email <- readline("What is your dbs email address? ")
+    student_number <- readline("What is your dbs student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
     form_id <- '1WDH2A0YpI7ghnetd4f_H9cdpGo9frH4X5KOfXo850tw'
 
