@@ -41,16 +41,19 @@ submit_dbs_on_demand <- function(course) {
   if (selection == "Yes") {
     loadDigest()
     loadGoogle()
-    email <- readline("What is your dbs email address? ")
-    student_number <- readline("What is your dbs student number? ")
+    email <- readline("What is your email address? ")
+    student_number <- readline("What is your student number? ")
     hash <- digest(paste(course, student_number), "md5", serialize = FALSE)
     form_id <- '1WDH2A0YpI7ghnetd4f_H9cdpGo9frH4X5KOfXo850tw'
-
     post_answers <- googleformr::gformr(form_id)
     post_this <- c(email, student_number, hash, course)
-    post_answers(post_content=post_this)
-
-    loadPassMessage()
+    status_code <- httr::status_code(post_answers(post_content=post_this))
+    if (status_code >= 200 && status_code < 300) {
+      loadPassMessage()
+    } else {
+      loadFailMessage()
+      return(FALSE)
+    }
   }
   TRUE
 }
